@@ -15,5 +15,6 @@ export default {
   canMockLocation: () => JailMonkey.canMockLocation,
   trustFall: () => JailMonkey.isJailBroken || JailMonkey.canMockLocation,
   isOnExternalStorage: () => JailMonkey.isOnExternalStorage,
-  isDebugged: () => JailMonkey.isDebugged
+  isDebugged: () => JailMonkey.isDebugged,
+  isDeviceDebugged: () => JailMonkey.isDeviceDebugged
 }

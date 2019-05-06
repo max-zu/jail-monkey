@@ -17,4 +17,9 @@ public class DebuggedCheck {
 
         return (context.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
+
+    public static boolean isDeviceDebugged(Context context) {
+        return android.provider.Settings.Secure.getInt(context.getContentResolver(),
+                android.provider.Settings.Global.ADB_ENABLED , 0) != 0;
+    }
 }
