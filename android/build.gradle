@@ -17,7 +17,6 @@ android {
 
 dependencies {
     compile 'com.facebook.react:react-native:+'
-    compile 'com.scottyab:rootbeer-lib:0.0.6'
     implementation 'com.github.kryjex-av:rootbeer:41cc1ed140f5ef4d52a076ca597dd2fef0fd69d5'
 }
 
