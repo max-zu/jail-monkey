@@ -74,6 +74,7 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
             )
     {
       promise.resolve(false);
+      return;
     }
 
 
@@ -100,12 +101,14 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
                           }
                         }
                         promise.resolve(isMock);
+                        return;
                       }
                     }
             ).addOnCanceledListener(new OnCanceledListener() {
       @Override
       public void onCanceled() {
         promise.resolve(false);
+        return;
       }
     }).addOnFailureListener(
             new OnFailureListener() {
