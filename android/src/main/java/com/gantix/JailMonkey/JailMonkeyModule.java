@@ -9,6 +9,7 @@ import java.util.Map;
 
 import static com.gantix.JailMonkey.ExternalStorage.ExternalStorageCheck.isOnExternalStorage;
 import static com.gantix.JailMonkey.MockLocation.MockLocationCheck.isMockLocationOn;
+import static com.gantix.JailMonkey.MockLocation.MockLocationCheck.isMockLocationEnabled;
 import static com.gantix.JailMonkey.Rooted.RootedCheck.isJailBroken;
 import static com.gantix.JailMonkey.Debugged.DebuggedCheck.isDebugged;
 import static com.gantix.JailMonkey.HookDetection.HookDetectionCheck.hookDetected;
@@ -31,6 +32,7 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
     constants.put("isJailBroken", isJailBroken(context));
     constants.put("hookDetected", hookDetected(context));
     constants.put("canMockLocation", isMockLocationOn(context));
+    constants.put("isMockLocationEnabled", isMockLocationEnabled(context));
     constants.put("isOnExternalStorage", isOnExternalStorage(context));
     constants.put("isDebugged", isDebugged(context));
     return constants;
