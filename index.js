@@ -16,5 +16,8 @@ export default {
   trustFall: () => JailMonkey.isJailBroken || JailMonkey.canMockLocation,
   isOnExternalStorage: () => JailMonkey.isOnExternalStorage,
   isDebugged: () => JailMonkey.isDebugged,
-  isMockLocationEnabled: JailMonkey.isMockLocationEnabled,
+  isMockLocationEnabled: rn.Platform.select({
+    ios: () => {},
+    android: JailMonkey.isMockLocationEnabled,
+  }),
 }
