@@ -1,6 +1,6 @@
 {
   "name": "jail-monkey",
-  "version": "2.2.0",
+  "version": "2.2.7",
   "description": "A React Native module for identifying jail-broken, rooted, or mock locations on iOS and Android",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/GantMan/jail-monkey.git"
+    "url": "git+https://github.com/max-zu/jail-monkey.git"
   },
   "keywords": [
     "React-Native",
@@ -25,9 +25,9 @@
   "author": "Gant Laborde",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GantMan/jail-monkey/issues"
+    "url": "https://github.com/max-zu/jail-monkey.git"
   },
-  "homepage": "https://github.com/GantMan/jail-monkey#readme",
+  "homepage": "https://github.com/max-zu/jail-monkey.git#readme",
   "devDependencies": {
     "np": "^2.18.3"
   }
