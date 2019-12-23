@@ -21,6 +21,7 @@ import static com.gantix.JailMonkey.AdbEnabled.AdbEnabled.AdbEnabled;
 import static com.gantix.JailMonkey.ExternalStorage.ExternalStorageCheck.isOnExternalStorage;
 import static com.gantix.JailMonkey.HookDetection.HookDetectionCheck.hookDetected;
 import static com.gantix.JailMonkey.MockLocation.MockLocationCheck.isMockLocationOn;
+import static com.gantix.JailMonkey.MockLocation.MockLocationCheck.isMockLocationEnabled;
 import static com.gantix.JailMonkey.Rooted.RootedCheck.isJailBroken;
 
 
@@ -65,6 +66,64 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
         p.resolve(isDebuggedMode);
     }
 
+    @ReactMethod
+    public void isMockLocationEnabled(final Promise promise) {
+        Activity activity = getCurrentActivity();
+        final ReactContext context = getReactApplicationContext();
+
+        if (ActivityCompat.checkSelfPermission(activity,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(activity,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        )
+        {
+            promise.resolve(false);
+            return;
+        }
+
+
+        FusedLocationProviderClient mFusedLocationClient;
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(activity,
+                        new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                // Got last known location. In some rare situations this can be null.
+                                boolean isMock = false;
+                                if (location != null) {
+                                    // Logic to handle location object
+
+                                    if (Build.VERSION.SDK_INT >= 18) {
+                                        isMock = location.isFromMockProvider();
+                                    } else {
+                                        if ("0".equals(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION)))
+                                            isMock =  false;
+                                        else {
+                                            isMock =  true;
+                                        }
+                                    }
+                                }
+                                promise.resolve(isMock);
+                                return;
+                            }
+                        }
+                ).addOnCanceledListener(new OnCanceledListener() {
+            @Override
+            public void onCanceled() {
+                promise.resolve(false);
+                return;
+            }
+        }).addOnFailureListener(
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        promise.reject(e.toString());
+                        return;
+                    }
+                }
+        );
+    }
 
     @Override
     public @Nullable
@@ -75,6 +134,7 @@ public class JailMonkeyModule extends ReactContextBaseJavaModule {
         constants.put("hookDetected", hookDetected(context));
         constants.put("canMockLocation", isMockLocationOn(context));
         constants.put("isOnExternalStorage", isOnExternalStorage(context));
+        constants.put("isMockLocationEnabled", isMockLocationEnabled(context));
         constants.put("AdbEnabled", AdbEnabled(context));
         return constants;
     }

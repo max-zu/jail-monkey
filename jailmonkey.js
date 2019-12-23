@@ -1,4 +1,4 @@
-import { NativeModules } from "react-native";
+import { NativeModules, Platform } from "react-native";
 
 const { JailMonkey } = NativeModules;
 
@@ -14,5 +14,6 @@ export default {
   isDevelopmentSettingsMode: function() {
     return JailMonkey.isDevelopmentSettingsMode();
   },
-  AdbEnabled: () => JailMonkey.AdbEnabled
+  AdbEnabled: () => JailMonkey.AdbEnabled,
+  isMockLocationEnabled: Platform.OS ==='android' ? JailMonkey.isMockLocationEnabled : () => {}
 };

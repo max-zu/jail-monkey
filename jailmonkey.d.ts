@@ -10,6 +10,7 @@ declare const _default: {
   isOnExternalStorage: () => Promise<boolean>;
   AdbEnabled: () => Promise<boolean>;
   isDevelopmentSettingsMode: () => Promise<boolean>;
+  isMockLocationEnabled: () => Promise<boolean>;
 };
 
 export default _default;
