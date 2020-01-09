@@ -1,5 +1,7 @@
 package com.gantix.JailMonkey;
 
+import android.app.Activity;
+
 import android.content.pm.ApplicationInfo;
 import android.os.AsyncTask;
 import android.os.Build;
