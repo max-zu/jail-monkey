@@ -12,6 +12,26 @@ import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+
+
+import android.content.Context;
+import android.provider.Settings;
+import android.os.Build;
+
+
+import android.location.Location;
+
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+
 import java.util.HashMap;
 import java.util.Map;
 
