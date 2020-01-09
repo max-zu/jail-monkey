@@ -1,7 +1,7 @@
 {
   "_args": [
     [
-      "jail-monkey@2.3.4"
+      "jail-monkey@2.3.5"
     ]
   ],
   "_from": "jail-monkey@2.2.0",
@@ -61,5 +61,5 @@
     "ts-check": "npx tsc jailmonkey.d.ts --noEmit"
   },
   "typings": "./jailmonkey.d.ts",
-  "version": "2.3.4"
+  "version": "2.3.5"
 }
